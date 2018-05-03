@@ -191,11 +191,13 @@ def main(region_name, input_rect):
             return rect_res
 
         category_results = []
-        sample_generator = Sample_Generator(region_name, category)
+        sample_generator = Gd_Sample_Generator(region_name, category)
         sample_generator.filter_radius([input_rect], 4000)
         raidus_right = sample_generator.radius_sati_rects
-        sample_generator.filter_count(raidus_right, 500)
+        print(raidus_right)
+        sample_generator.filter_count(raidus_right, 1000)
         filtered_list = sample_generator.count_sati_rects
+        print(filtered_list)
         pool_lv2 = ThreadPool()
         rect_result = pool_lv2.map(by_rect, filtered_list)
         pool_lv2.close()
